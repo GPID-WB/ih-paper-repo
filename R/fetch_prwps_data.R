@@ -8,7 +8,7 @@ library(readr)
 
 fetch_prwp_data <- function(years,
                             base_path = getwd(),
-                            required_columns = c("id", "authors", "abstracts", "display_title", "url", "origu"),
+                            required_columns = c("id", "authors", "abstracts", "display_title", "url", "origu", "keywd"),
                             save_csv = FALSE,
                             return_list = FALSE) {
   # Define the filepath for saving the data
@@ -63,7 +63,7 @@ fetch_prwp_data <- function(years,
 
       # Convert list to dataframe and ensure proper column names
       df <- do.call(rbind, lapply(documents_modified, as.data.frame))
-      names(df) <- required_columns
+      #names(df) <- required_columns
 
       # Add the year column
       df$year <- year
@@ -101,5 +101,5 @@ fetch_prwp_data <- function(years,
 }
 
 # Example usage:
-years_to_fetch <- 2023:2024
+years_to_fetch <- 2021:2022
 prwp_data <- fetch_prwp_data(years_to_fetch, save_csv = FALSE, return_list = FALSE)
